@@ -257,11 +257,11 @@ The backend starts instantly using an in-memory database with zero installation 
 ## 📱 Mobile Demonstration & Cloudflare Tunnel
 
 During college demonstrations, college/hostel Wi-Fi routers frequently have **AP Isolation (Client Isolation)** enabled, preventing phones from reaching a laptop's local IP (`192.168.1.x`).
-![Project Screenshot](images/ss5.jpeg)
-<img src="images/ss5.jpeg" alt="Alt text" width="300">
+
+<img src="images/ss5.jpeg" alt="Alt text" width="250">
+<img src="images/ss6.jpeg" alt="Alt text" width="250">
 
 
-![Project Screenshot](images/ss6.jpeg)
 
 ZeroBurn solves this with two built-in solutions:
 1. **Automated Cloudflare Quick Tunnel:**  
