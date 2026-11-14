@@ -1,0 +1,53 @@
+{
+  "info": {
+    "name": "Student Management REST API",
+    "description": "Exercises every assignment endpoint. Run requests in order; the collection stores the created student's ID automatically.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "studentId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "1. Create student (POST)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Asha Perera\",\n  \"email\": \"asha.perera@example.com\",\n  \"course\": \"Computer Science\",\n  \"age\": 21\n}", "options": { "raw": { "language": "json" } } },
+        "url": "{{baseUrl}}/api/students"
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Created with HTTP 201', () => pm.response.to.have.status(201));", "const student = pm.response.json();", "pm.expect(student.id).to.exist;", "pm.collectionVariables.set('studentId', student.id);"] } }]
+    },
+    {
+      "name": "2. Get all students (GET)",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/students" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Returns HTTP 200 and an array', () => { pm.response.to.have.status(200); pm.expect(pm.response.json()).to.be.an('array'); });"] } }]
+    },
+    {
+      "name": "3. Get student by ID (GET)",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/students/{{studentId}}" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Returns the created student', () => { pm.response.to.have.status(200); pm.expect(pm.response.json().id).to.eql(Number(pm.collectionVariables.get('studentId'))); });"] } }]
+    },
+    {
+      "name": "4. Get students by course (GET)",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/students/course/Computer%20Science" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Returns students for the course', () => { pm.response.to.have.status(200); pm.expect(pm.response.json()).to.be.an('array'); });"] } }]
+    },
+    {
+      "name": "5. Update student (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Asha Perera\",\n  \"email\": \"asha.perera@example.com\",\n  \"course\": \"Software Engineering\",\n  \"age\": 22\n}", "options": { "raw": { "language": "json" } } },
+        "url": "{{baseUrl}}/api/students/{{studentId}}"
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Updated with HTTP 200', () => { pm.response.to.have.status(200); pm.expect(pm.response.json().course).to.eql('Software Engineering'); });"] } }]
+    },
+    {
+      "name": "6. Delete student (DELETE)",
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/api/students/{{studentId}}" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Deleted with HTTP 204', () => pm.response.to.have.status(204));"] } }]
+    }
+  ]
+}
