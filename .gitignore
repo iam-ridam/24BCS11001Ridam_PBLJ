@@ -1,0 +1,19 @@
+# Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Java / Maven
+backend/target/
+*.class
+.mvn/wrapper/maven-wrapper.jar
+
+# Logs and runtime
+*.log
+tunnel.log
+
+# IDE
+.idea/
+.vscode/
+*.iml
