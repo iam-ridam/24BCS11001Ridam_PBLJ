@@ -71,6 +71,7 @@ Instead of relying on heavy WebSocket handshakes or aggressive client-side polli
 - Thread-safe broadcast mechanisms deliver instant access alerts (`CREATED`, `VIEWED`, `CONSUMED`, `INTRUSION_ATTEMPT`) with sub-millisecond latency.
 
 ### 3. Background Expiration Daemon (`@Scheduled`)
+![Project Screenshot](images/ss3.png)
 Secrets that are never opened must not linger in the database. Spring Boot's task execution subsystem runs an asynchronous background cleanup task every 30 seconds (`@Scheduled(fixedRate = 30000)`):
 ```java
 @Scheduled(fixedRate = 30000)
@@ -79,6 +80,8 @@ public void purgeExpiredSecrets() {
 }
 ```
 Expired records are purged and an `EXPIRED` audit event is logged.
+
+![Project Screenshot](images/ss4.png)
 
 ### 4. Dual-Profile Database Architecture (Postgres + H2 Fallback)
 Spring Boot's profile mechanism enables ZeroBurn to switch databases seamlessly without code changes:
