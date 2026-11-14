@@ -24,9 +24,6 @@
 8. [Zero-Config Fallback (H2 In-Memory Mode)](#-zero-config-fallback-h2-in-memory-mode)
 9. [Mobile Demonstration & Cloudflare Tunnel](#-mobile-demonstration--cloudflare-tunnel)
 10. [REST API Endpoints](#-rest-api-endpoints)
-11. [College Viva & Demonstration Script (3 Minutes)](#-college-viva--demonstration-script-3-minutes)
-12. [Top 5 Viva / Interview Questions & Crisp Answers](#-top-5-viva--interview-questions--crisp-answers)
-13. [License](#-license)
 
 ---
 
@@ -45,6 +42,11 @@ Too often, these credentials are sent over unencrypted or logged channels like W
 2. **Self-Destruction (Burn on Read):** As soon as an authorized recipient views the secret, its database record is atomically deleted.
 3. **Anti-Link-Preview Bot Protection:** Automated crawlers (Slackbot, WhatsApp previewers) inspect links when pasted. ZeroBurn uses a two-step reveal protocol so bot requests never trigger premature destruction.
 4. **Real-Time Intrusion Detection:** If anyone refreshes or visits an already-burned secret URL, Spring Boot immediately logs an intrusion attempt with their IP and device fingerprint, dispatching a live alert to the creator's dashboard via Server-Sent Events (SSE).
+
+![Project Screenshot](images/ss1.png)
+![Project Screenshot](images/ss2.png)
+
+
 
 ---
 
