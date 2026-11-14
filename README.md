@@ -55,6 +55,7 @@ Too often, these credentials are sent over unencrypted or logged channels like W
 The backend is built using **Java 21 LTS** and **Spring Boot 4.1.x**. Spring Boot was chosen as the enterprise foundation because it provides robust concurrency control, thread-safe transactional management, and high-performance reactive streaming out of the box:
 
 ### 1. Atomic Read-and-Delete Concurrency (Race Condition Defense)
+![Project Screenshot](images/ss3.png)
 When two users hit the burn endpoint simultaneously, standard "read-then-delete" code causes race conditions where both users read the secret before it is deleted. Spring Boot resolves this using two enterprise database concurrency mechanisms:
 - **Single-View Secrets (`maxViews = 1`):** Executes an atomic native PostgreSQL statement:
   ```sql
@@ -71,7 +72,7 @@ Instead of relying on heavy WebSocket handshakes or aggressive client-side polli
 - Thread-safe broadcast mechanisms deliver instant access alerts (`CREATED`, `VIEWED`, `CONSUMED`, `INTRUSION_ATTEMPT`) with sub-millisecond latency.
 
 ### 3. Background Expiration Daemon (`@Scheduled`)
-![Project Screenshot](images/ss3.png)
+
 Secrets that are never opened must not linger in the database. Spring Boot's task execution subsystem runs an asynchronous background cleanup task every 30 seconds (`@Scheduled(fixedRate = 30000)`):
 ```java
 @Scheduled(fixedRate = 30000)
