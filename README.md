@@ -258,6 +258,8 @@ The backend starts instantly using an in-memory database with zero installation 
 
 During college demonstrations, college/hostel Wi-Fi routers frequently have **AP Isolation (Client Isolation)** enabled, preventing phones from reaching a laptop's local IP (`192.168.1.x`).
 ![Project Screenshot](images/ss5.jpeg)
+<img src="images/ss5.jpeg" alt="Alt text" width="300">
+
 
 ![Project Screenshot](images/ss6.jpeg)
 
